@@ -16,13 +16,22 @@ services:
       - suppo-network
       
   php-fpm:
+    image: wodby/php:$PHP_TAG
     container_name: "${PROJECT_NAME}_php"
-    build:
-      context: ./php-fpm
+    environment:
+      PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
+      DB_HOST: $DB_HOST
+      DB_USER: $DB_USER
+      DB_PASSWORD: $DB_PASSWORD
+      DB_NAME: $DB_NAME
+      PHP_FPM_USER: wodby
+      PHP_FPM_GROUP: wodby
+      #
+      PHP_XDEBUG: 1
+      PHP_XDEBUG_REMOTE_HOST: $HOST_IP
+      PHP_XDEBUG_MAX_NESTING_LEVEL: 1024
     volumes:
       - $WORKSPACE:/var/www/html
-    environment:
-      XDEBUG_REMOTE_HOST: $HOST_IP
     networks:
       - suppo-network
 
