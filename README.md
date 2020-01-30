@@ -25,3 +25,6 @@ docker-compose up -d
 
 ### wp-config.php
 See `wp-config.php.exapmle`.
+
+### Debug in VSCode
+Install xDebug extention for Chrome. Copy `.vscode` folder into WP repository. Run 'Listen for XDebug' in VSCode.
