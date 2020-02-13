@@ -26,5 +26,19 @@ docker-compose up -d
 ### wp-config.php
 See `wp-config.php.exapmle`.
 
+### Enadbe xDebug
+Create file `docker-compose.override.yml` and insert:
+```
+version: "3"
+
+services:
+  php-fpm:
+      environment:
+        PHP_XDEBUG: 1
+        PHP_XDEBUG_DEFAULT_ENABLE: 1
+        PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
+        PHP_XDEBUG_REMOTE_HOST: host.docker.internal
+```
+
 ### Debug in VSCode
 Install xDebug extention for Chrome. Copy `.vscode` folder into WP repository. Run 'Listen for XDebug' in VSCode.

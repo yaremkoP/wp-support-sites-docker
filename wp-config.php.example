@@ -1,7 +1,7 @@
 <?php
 // Report all PHP errors (see changelog)
-error_reporting( -1 );
-@ini_set( 'display_errors', 0 );
+// error_reporting( -1 );
+// @ini_set( 'display_errors', 0 );
 
 // Dev Environment
 define( 'DB_NAME',     'johnsdewars_com' );
@@ -15,4 +15,4 @@ define( 'WP_SITEURL', WP_HOME );
 // Dev will always want debug on and caching off
 define( 'WP_DEBUG',         false );
 define( 'WP_DEBUG_DISPLAY', WP_DEBUG );
-define( 'WP_CACHE', false );
+define( 'WP_CACHE',         false );
