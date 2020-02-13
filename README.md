@@ -14,6 +14,9 @@ cp .env-example .env
 `127.0.0.1 johnsdewars_com.local`
 
 5. Copy file `wp-config.php.example` from this repository to `wp-config-local.php` file in each WP repository. Edit file constant `DB_NAME` to valid value. Edit constant `WP_HOME` to the same vaule as in `hosts` file. (Look in `wp-config.php.example`).
+```shell script
+cp wp-config.php.example /path_to_the_repo/wp-config.php
+```
 
 6. Run:<br/>
 ```shell script
@@ -42,3 +45,16 @@ services:
 
 ### Debug in VSCode
 Install xDebug extention for Chrome. Copy `.vscode` folder into WP repository. Run 'Listen for XDebug' in VSCode.
+
+### Build theme with npm
+Go to the repository. Run (for Windows CMD):
+```shell script
+docker run --rm --name=npm  -v "%cd%/wp-content/themes/:/usr/src/app" -w="/usr/src/app" -u=node:8 -it node:8 bash
+```
+##### Byild themes
+```shell script
+cd theme_name_do_you_need
+npm install --no-dev
+npm install bower
+npm run build
+```
