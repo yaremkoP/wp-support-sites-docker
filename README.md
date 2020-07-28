@@ -9,13 +9,14 @@
 ```shell script
 cp .env-example .env
 ```
+Edit `WORKSPACE` variable. It is a relative path from Docker config files to folder where contains all legacy sites/repositories on your local machine.
 
 4. Edit `hosts` file. Add sites name and IP to `C:\Windows\System32\drivers\etc\hosts`. Site name is a repositorie names with `.local` ending. **Exaple:**<br/>
 `127.0.0.1 johnsdewars_com.local`
 
 5. Copy file `wp-config.php.example` from this repository to `wp-config-local.php` file in each WP repository. Edit file constant `DB_NAME` to valid value. Edit constant `WP_HOME` to the same vaule as in `hosts` file. (Look in `wp-config.php.example`).
 ```shell script
-cp wp-config.php.example /path_to_the_repo/wp-config.php
+cp wp-config.php.example /path_to_the_repo/wp-config-local.php
 ```
 
 6. Run:<br/>
