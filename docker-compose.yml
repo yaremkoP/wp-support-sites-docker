@@ -2,7 +2,7 @@ version: "3"
 
 services:
   mariadb:
-    image: wodby/mariadb:$MARIADB_TAG
+    image: mariadb:$MARIADB_TAG
     container_name: "${PROJECT_NAME}_mariadb"
     stop_grace_period: 30s
     environment:
@@ -12,6 +12,8 @@ services:
       MYSQL_PASSWORD: $DB_PASSWORD
     ports:
       - "33066:3306"
+    volumes:
+      - mariadb_wp:/var/lib/mysql
     networks:
       - suppo-network
       
@@ -40,7 +42,6 @@ services:
     networks:
       - suppo-network
 
-
   nginx:
     image: nginx:alpine
     container_name: "${PROJECT_NAME}_nginx"
@@ -58,20 +59,23 @@ services:
     networks:
       - suppo-network
       
-  pma:
-    image: phpmyadmin/phpmyadmin:5.0.0
-    container_name: "${PROJECT_NAME}_pma"
-    environment:
-      PMA_HOST: $DB_HOST
-      PMA_USER: root
-      PMA_PASSWORD: $DB_ROOT_PASSWORD
-      PHP_UPLOAD_MAX_FILESIZE: 1G
-      PHP_MAX_INPUT_VARS: 1G
-      UPLOAD_LIMIT: 1G
-    ports:
-      - "8081:80"
-    networks:
-      - suppo-network
+  # pma:
+  #   image: phpmyadmin/phpmyadmin:5.0.0
+  #   container_name: "${PROJECT_NAME}_pma"
+  #   environment:
+  #     PMA_HOST: $DB_HOST
+  #     PMA_USER: root
+  #     PMA_PASSWORD: $DB_ROOT_PASSWORD
+  #     PHP_UPLOAD_MAX_FILESIZE: 1G
+  #     PHP_MAX_INPUT_VARS: 1G
+  #     UPLOAD_LIMIT: 1G
+  #   ports:
+  #     - "8081:80"
+  #   networks:
+  #     - suppo-network
+
+volumes:
+    mariadb_wp:
 
 networks:
   suppo-network:
